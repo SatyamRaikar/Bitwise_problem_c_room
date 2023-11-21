@@ -1,0 +1,84 @@
+/* Determine the year and branch */
+# include <stdio.h>
+int main( )
+{
+int num ;
+int cnt, rno ;
+int data[ ] = { 273, 548, 786, 1096 } ;
+printf ( "\nEnter the room number: " ) ;
+scanf ( "%d", &num ) ;
+/* check if the data matches */
+for ( cnt = 0 ; cnt < 4 ; cnt++ )
+{
+rno = ( data [ cnt ] >> 8 ) ;
+if ( num == rno ) 
+break ;
+}
+if ( cnt == 4 )
+{
+printf ( "No such data present\n" ) ;
+exit ( 0 ) ;
+}
+for ( cnt = 1 ; cnt <= 8 ; cnt *= 2 )
+{
+if ( ( num & cnt ) == cnt ) /* bits 0 to 3 */
+break ;
+}
+/* determine the year */
+switch ( cnt )
+{
+case 1 :
+printf ( "The student is of First year\n" ) ;
+break ;
+case 2 :
+printf ( "The student is of Second year\n" ) ;
+break ;
+case 4 :
+printf ( "The student is of Third year\n" ) ;
+break ;
+case 8 :
+printf ( "The student is of Fourth year\n" ) ;
+}
+for ( cnt = 16 ; cnt <= 128 ; cnt *= 2 )
+
+{
+
+if ( ( num & cnt ) == cnt ) /* bits 4 to 7 */
+
+break ;
+
+}
+
+/* determine the branch */
+
+switch ( cnt )
+
+{
+
+case 16 :
+
+printf ( "The student is of Mechanical branch\n" ) ;
+
+break ;
+
+case 32 :
+
+printf ( "The student is of Chemical branch\n" ) ;
+
+break ;
+
+case 64 :
+
+printf ( "The student is of Electronics branch\n" ) ;
+
+break ;
+
+case 128 :
+
+printf ( "The student is of IT branch\n" ) ;
+
+}
+
+return 0 ;
+
+}
